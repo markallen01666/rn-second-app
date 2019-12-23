@@ -21,9 +21,13 @@ export default function App() {
     ]);
   };
 
+  const clearGoalsHandler = () => {
+    setCourseGoals(currentGoals => []);
+  }
+
   return (
     <View style={styles.screen}>
-      <GoalInput onAddGoal={addGoalHandler} />
+      <GoalInput onAddGoal={addGoalHandler} onClearGoals={clearGoalsHandler} />
       <FlatList
         data={courseGoals}
         renderItem={itemData => <GoalItem title={itemData.item.value} />}

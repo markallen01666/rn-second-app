@@ -9,15 +9,20 @@ const GoalInput = props => {
   };
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        width="80%"
-        placeholder="Enter course goal"
-        style={styles.input}
-        onChangeText={goalInputHandler}
-        value={enteredGoal}
-      />
-      <Button title="ADD" onPress={props.onAddGoal.bind(this, enteredGoal)} />
+    <View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          width="80%"
+          placeholder="Enter course goal"
+          style={styles.input}
+          onChangeText={goalInputHandler}
+          value={enteredGoal}
+        />
+        <Button title="ADD" onPress={props.onAddGoal.bind(this, enteredGoal)} />
+      </View>
+      <View style={styles.clearButton}>
+        <Button title="CLEAR" onPress={props.onClearGoals.bind(this)} />
+      </View>
     </View>
   );
 };
@@ -27,12 +32,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: 20
+    marginTop: 20,
+    marginBottom: 10
   },
   input: {
     borderColor: "black",
     borderWidth: 1,
     padding: 10
+  },
+  clearButton: {
+    marginBottom: 20
   }
 });
 
