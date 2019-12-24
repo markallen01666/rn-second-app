@@ -1,3 +1,5 @@
+// Study goals React Native app from Max Swarzmuller Udemy course with extra features included by me
+
 import React, { useState } from "react";
 import {
   StyleSheet,
