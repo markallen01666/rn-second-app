@@ -21,7 +21,7 @@ const GoalInput = props => {
         <Button title="ADD" onPress={props.onAddGoal.bind(this, enteredGoal)} />
       </View>
       <View style={styles.clearButton}>
-        <Button title="CLEAR" onPress={props.onClearGoals.bind(this)} />
+        <Button title="CLEAR" onPress={props.onClearGoals} />
       </View>
     </View>
   );
