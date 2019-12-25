@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, StyleSheet, Button } from "react-native";
+import { View, TextInput, StyleSheet, Button, Modal } from "react-native";
 
 const GoalInput = props => {
   const [enteredGoal, setEnteredGoal] = useState("");
@@ -8,8 +8,18 @@ const GoalInput = props => {
     setEnteredGoal(enteredText);
   };
 
+  const addGoalHandler = () => {
+    props.onAddGoal(enteredGoal);
+    setEnteredGoal("");
+  };
+
+  const cancelAddGoalHandler = () => {
+    props.onCancelAddGoal();
+    setEnteredGoal("");
+  };
+
   return (
-    <View>
+    <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
         <TextInput
           width="80%"
@@ -18,30 +28,42 @@ const GoalInput = props => {
           onChangeText={goalInputHandler}
           value={enteredGoal}
         />
-        <Button title="ADD" onPress={props.onAddGoal.bind(this, enteredGoal)} />
+        <View style={styles.buttonContainer}>
+          <View style={styles.button}>
+            <Button
+              title="CANCEL"
+              color="grey"
+              onPress={cancelAddGoalHandler}
+            />
+          </View>
+          <View style={styles.button}>
+            <Button title="ADD" onPress={addGoalHandler} />
+          </View>
+        </View>
       </View>
-      <View style={styles.clearButton}>
-        <Button title="CLEAR" onPress={props.onClearGoals} />
-      </View>
-    </View>
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
   inputContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 20,
-    marginBottom: 10
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
   },
   input: {
     borderColor: "black",
     borderWidth: 1,
-    padding: 10
+    padding: 10,
+    marginBottom: 10
   },
-  clearButton: {
-    marginBottom: 20
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "60%"
+  },
+  button: {
+    width: "40%"
   }
 });
 
